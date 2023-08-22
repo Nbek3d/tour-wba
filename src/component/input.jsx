@@ -1,29 +1,38 @@
-import React, { useState } from 'react';
+import React, { Component } from 'react';
 
-function InputComponent() {
-  const [inputValue, setInputValue] = useState('');
-  const [displayText, setDisplayText] = useState('Hello');
+class InputComponent extends Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      inputValue: '',
+      displayText: 'Hello'
+    };
+    this.handleInputChange = this.handleInputChange.bind(this);
+    this.handleButtonClick = this.handleButtonClick.bind(this);
+  }
 
-  const handleInputChange = (event) => {
-    setInputValue(event.target.value);
-  };
+  handleInputChange(event) {
+    this.setState({ inputValue: event.target.value });
+  }
 
-  const handleButtonClick = () => {
-    setDisplayText(inputValue);
-  };
+  handleButtonClick() {
+    this.setState({ displayText: this.state.inputValue });
+  }
 
-  return (
-    <div>
-      <h1>{displayText}</h1>
-      <input
-        type="text"
-        value={inputValue}
-        onChange={handleInputChange}
-        placeholder='write'
-      />
-      <button onClick={handleButtonClick}>Change Text</button>
-    </div>
-  );
+  render() {
+    return (
+      <div>
+        <h1>{this.state.displayText}</h1>
+        <input
+          type="text"
+          value={this.state.inputValue}
+          onChange={this.handleInputChange}
+          placeholder='write'
+        />
+        <button onClick={this.handleButtonClick}>Change Text</button>
+      </div>
+    );
+  }
 }
 
 export default InputComponent;
