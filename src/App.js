@@ -1,10 +1,11 @@
 // import logo from './logo.svg';
-import './App.css';
-import InputComponent  from './component/input.jsx'
+import './index.css';
+import { InputComponent ,Navbar}  from './component'
 
 function App() {
   return (
     <div>
+      <Navbar/>
       <InputComponent/>
     </div>
   );
